@@ -20,11 +20,19 @@
         :disabled="disabledPicker"
         :required="required"
         readonly>
+      <!-- Today Button -->
+      <span class="vdp-datepicker__today-button" :class="{'input-group-addon' : bootstrapStyling}" v-if="todayButton" @click="setDate(Date.now())">
+        <span :class="todayButtonIcon">
+          <span v-if="calendarButtonIcon.length === 0" v-html="todayButtonText">
+          </span>
+        </span>
+      </span>
       <!-- Clear Button -->
       <span class="vdp-datepicker__clear-button" :class="{'input-group-addon' : bootstrapStyling}" v-if="clearButton && selectedDate" @click="clearDate()">
-        <i :class="clearButtonIcon">
-          <span v-if="calendarButtonIcon.length === 0">&times;</span>
-        </i>
+        <span :class="clearButtonIcon">
+          <span v-if="calendarButtonIcon.length === 0" v-html="clearButtonText">
+          </span>
+        </span>
       </span>
     </div>
 
@@ -142,6 +150,22 @@ export default {
     clearButtonIcon: {
       type: String,
       default: ''
+    },
+    clearButtonText: {
+      type: String,
+      default: '&times;'
+    },
+    todayButton: {
+      type: Boolean,
+      default: false
+    },
+    todayButtonIcon: {
+      type: String,
+      default: ''
+    },
+    todayButtonText: {
+      type: String,
+      default: 'Today'
     },
     calendarButton: {
       type: Boolean,
