@@ -1,17 +1,14 @@
 <template>
   <div class="vdp-datepicker" :class="[wrapperClass, isRtl ? 'rtl' : '']">
-    <div :class="{'input-group' : bootstrapStyling}">
+    <div class="input-group">
       <!-- Calendar Button -->
-      <span class="vdp-datepicker__calendar-button" :class="{'input-group-addon' : bootstrapStyling}" v-if="calendarButton" @click="showCalendar" v-bind:style="{'cursor:not-allowed;' : disabledPicker}">
-        <i :class="calendarButtonIcon">
-          {{ calendarButtonIconContent }}
-          <span v-if="!calendarButtonIcon">&hellip;</span>
-        </i>
+      <span class="vdp-datepicker__calendar-icon" class="input-group-prepend" v-if="calendarIcon" @click="showCalendar" v-bind:style="{'cursor:not-allowed;' : disabledPicker}">
+        <div class="vdp-datepicker__calendar-svg-icon svg-icon" v-html="calendarIcon"></div>
       </span>
       <!-- Input -->
       <input
         :type="inline ? 'hidden' : 'text'"
-        :class="[ inputClass, { 'form-control' : bootstrapStyling } ]"
+        :class="[ inputClass, 'form-control' ]"
         :name="name"
         :ref="refName"
         :id="id"
@@ -24,18 +21,12 @@
         :required="required"
         readonly>
       <!-- Today Button -->
-      <span class="vdp-datepicker__today-button" :class="{'input-group-addon' : bootstrapStyling}" v-if="todayButton" @click="setDate(Date.now())">
-        <span :class="todayButtonIcon">
-          <span v-if="calendarButtonIcon.length === 0" v-html="todayButtonText">
-          </span>
-        </span>
+      <span class="vdp-datepicker__today-button" class="input-group-append" v-if="todayButton" @click="setDate(Date.now())">
+        <div class="btn btn-secondary">{{ todayButtonText }}</button>
       </span>
       <!-- Clear Button -->
-      <span class="vdp-datepicker__clear-button" :class="{'input-group-addon' : bootstrapStyling}" v-if="clearButton && selectedDate" @click="clearDate()">
-        <span :class="clearButtonIcon">
-          <span v-if="calendarButtonIcon.length === 0" v-html="clearButtonText">
-          </span>
-        </span>
+      <span class="vdp-datepicker__clear-button" class="input-group-append" v-if="clearButton && selectedDate" @click="clearDate()">
+        <div class="btn btn-secondary">{{ clearButtonText }}</button>
       </span>
     </div>
 
@@ -157,10 +148,6 @@ export default {
       type: Boolean,
       default: false
     },
-    clearButtonIcon: {
-      type: String,
-      default: ''
-    },
     clearButtonText: {
       type: String,
       default: '&times;'
@@ -169,31 +156,17 @@ export default {
       type: Boolean,
       default: false
     },
-    todayButtonIcon: {
-      type: String,
-      default: ''
-    },
     todayButtonText: {
       type: String,
       default: 'Today'
     },
-    calendarButton: {
-      type: Boolean,
-      default: false
-    },
-    calendarButtonIcon: {
-      type: String,
-      default: ''
-    },
-    bootstrapStyling: {
-      type: Boolean,
-      default: false
+    calendarIcon: {
+      type: String
     },
     initialView: {
       type: String,
       default: 'day'
     },
-    calendarButtonIconContent: String,
     disabledPicker: Boolean,
     required: Boolean,
     minimumView: {
@@ -1009,10 +982,12 @@ $width = 300px
         width 33.333%
 
 .vdp-datepicker__clear-button
-.vdp-datepicker__calendar-button
+.vdp-datepicker__calendar-icon
     cursor pointer
     font-style normal
-    &.disabled
-      color #999
-      cursor default
+
+.vdp-datepicker__calendar-svg-icon 
+    width 14px
+    height 14px
+    margin 0 12px
 </style>
