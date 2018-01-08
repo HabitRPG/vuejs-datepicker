@@ -2,7 +2,7 @@
   <div class="vdp-datepicker" :class="[wrapperClass, isRtl ? 'rtl' : '']">
     <div class="input-group">
       <!-- Calendar Button -->
-      <span class="vdp-datepicker__calendar-icon" class="input-group-prepend" v-if="calendarIcon" @click="showCalendar" v-bind:style="{'cursor:not-allowed;' : disabledPicker}">
+      <span class="vdp-datepicker__calendar-icon" class="input-group-prepend input-group-icon" v-if="calendarIcon" @click="showCalendar" v-bind:style="{'cursor:not-allowed;' : disabledPicker}">
         <div class="vdp-datepicker__calendar-svg-icon svg-icon" v-html="calendarIcon"></div>
       </span>
       <!-- Input -->
