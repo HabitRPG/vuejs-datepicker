@@ -3,7 +3,13 @@
     <h1>Datepicker Examples</h1>
     <div class="example">
       <h3>Default datepicker...</h3>
-      <datepicker placeholder="Select Date" />
+      <datepicker placeholder="Select Date"
+      :value="selectedDate"
+      >
+        <div slot="beforeCalendarHeader">
+          Hi
+        </div>
+      </datepicker>
       <code>
           &lt;datepicker placeholder="Select Date"&gt;&lt;/datepicker&gt;
       </code>
@@ -22,8 +28,10 @@
       <datepicker
         :bootstrapStyling="true"
         :calendarButton="true"
+        calendar-button-icon-content="HI"
         :clearButton="true"
       >
+
       </datepicker>
       <code>
           &lt;datepicker placeholder="Select Date"&gt;&lt;/datepicker&gt;
@@ -161,7 +169,7 @@
 
     <div class="example">
       <h3>With default open date</h3>
-      <datepicker :open-date="openDate"></datepicker>
+      <datepicker ></datepicker>
       <code>
         &lt;datepicker :disabled="disabled"&gt;&lt;/datepicker&gt;
       </code>
@@ -287,7 +295,9 @@ export default {
       state: state,
       vModelExample: null,
       languages: lang,
-      language: 'en'
+      language: 'en',
+      selectedDate: new Date(2019, 1, 1),
+      today: '2020-02-02'
     }
   },
   computed: {

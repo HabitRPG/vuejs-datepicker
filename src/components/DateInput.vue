@@ -1,12 +1,18 @@
 <template>
   <div :class="{'input-group' : bootstrapStyling}">
     <!-- Calendar Button -->
-    <span v-if="calendarButton" class="vdp-datepicker__calendar-button" :class="{'input-group-prepend' : bootstrapStyling}" @click="showCalendar" v-bind:style="{'cursor:not-allowed;' : disabled}">
-      <span :class="{'input-group-text' : bootstrapStyling}">
-        <i :class="calendarButtonIcon">
+    <span v-if="calendarButton"
+          class="vdp-datepicker__calendar-button input-group-icon input-group-prepend"
+          @click="showCalendar" v-bind:style="{'cursor:not-allowed;' : disabled}">
+      <span>
+        <i v-if="calendarButtonIcon" :class="calendarButtonIcon">
           {{ calendarButtonIconContent }}
           <span v-if="!calendarButtonIcon">&hellip;</span>
         </i>
+        <div class="svg-icon" v-if="calendarButtonIconContent"
+             v-html="calendarButtonIconContent"
+             >
+        </div>
       </span>
     </span>
     <!-- Input -->
