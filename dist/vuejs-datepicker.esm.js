@@ -1114,7 +1114,7 @@ var __vue_render__$1 = function() {
           expression: "showDayView"
         }
       ],
-      class: [_vm.calendarClass, "vdp-datepicker__calendar"],
+      class: [_vm.calendarClass, "vdp-datepicker__calendar", "picker_day"],
       style: _vm.calendarStyle,
       on: {
         mousedown: function($event) {
@@ -1439,7 +1439,7 @@ var __vue_render__$2 = function() {
           expression: "showMonthView"
         }
       ],
-      class: [_vm.calendarClass, "vdp-datepicker__calendar"],
+      class: [_vm.calendarClass, "vdp-datepicker__calendar", "picker_month"],
       style: _vm.calendarStyle,
       on: {
         mousedown: function($event) {
@@ -1715,7 +1715,7 @@ var __vue_render__$3 = function() {
           expression: "showYearView"
         }
       ],
-      class: [_vm.calendarClass, "vdp-datepicker__calendar"],
+      class: [_vm.calendarClass, "vdp-datepicker__calendar", "picker_year"],
       style: _vm.calendarStyle,
       on: {
         mousedown: function($event) {
