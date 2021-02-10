@@ -1,5 +1,5 @@
 <template>
-  <div class="vdp-datepicker" :class="[wrapperClass, isRtl ? 'rtl' : '']">
+  <div class="vdp-datepicker" :class="[wrapperClass, isRtl ? 'rtl' : '', openBelow ? 'below' : 'above']">
     <date-input
       :selectedDate="selectedDate"
       :resetTypedDate="resetTypedDate"
@@ -183,7 +183,8 @@ export default {
        */
       calendarHeight: 0,
       resetTypedDate: new Date(),
-      utils: constructedDateUtils
+      utils: constructedDateUtils,
+      openBelow: false
     }
   },
   watch: {
@@ -261,6 +262,18 @@ export default {
       if (!this.allowedToShowView(initialView)) {
         throw new Error(`initialView '${this.initialView}' cannot be rendered based on minimum '${this.minimumView}' and maximum '${this.maximumView}'`)
       }
+
+      const currentDocumentHeight = document.documentElement.clientHeight;
+      const middleOfVisibleWindow = currentDocumentHeight / 2;
+
+      const currentElementOffset = this.$el.offsetTop - document.documentElement.scrollTop;
+
+      if (middleOfVisibleWindow < currentElementOffset) {
+        this.openBelow = false;
+      } else {
+        this.openBelow = true;
+      }
+
       switch (initialView) {
         case 'year':
           this.showYearCalendar()
@@ -461,5 +474,5 @@ export default {
 ;
 </script>
 <style lang="stylus">
-@import '../styles/style'
+@import '../styles/style';
 </style>
